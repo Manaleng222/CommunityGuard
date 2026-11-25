@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CommunityGuard.Maui.ViewModels"
+             x:Class="CommunityGuard.Maui.Views.DispatchPage"
+             x:DataType="vm:DispatchViewModel"
+             Title="Report Incident">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Label Text="Report New Incident" FontSize="24" FontAttributes="Bold" Margin="0,0,0,10" />
+
+            <Entry Placeholder="Incident Title" Text="{Binding Title}" />
+            <Editor Placeholder="Description" Text="{Binding Description}" HeightRequest="100" />
+            <Entry Placeholder="Sector (e.g. Sector 1)" Text="{Binding Sector}" />
+
+            <Label Text="Priority" FontAttributes="Bold" Margin="0,10,0,0" />
+            <Picker ItemsSource="{Binding Priorities}" SelectedItem="{Binding SelectedPriority}" />
+
+            <Button Text="Submit Report" Command="{Binding SubmitReportCommand}" 
+                    BackgroundColor="#512BD4" TextColor="White" Margin="0,20,0,0" 
+                    IsEnabled="{Binding IsNotBusy}" />
+
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#512BD4" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

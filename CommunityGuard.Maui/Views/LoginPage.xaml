@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CommunityGuard.Maui.ViewModels"
+             x:Class="CommunityGuard.Maui.Views.LoginPage"
+             x:DataType="vm:LoginViewModel"
+             Title="CommunityGuard Login">
+
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+        <Label Text="Welcome Back" FontSize="32" HorizontalOptions="Center" />
+        <Label Text="Log in to your account" HorizontalOptions="Center" TextColor="Gray" />
+
+        <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" />
+        <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" />
+
+        <Button Text="Login" Command="{Binding LoginCommand}"
+                IsEnabled="{Binding IsNotBusy}"
+                BackgroundColor="#512BD4" TextColor="White" />
+
+        <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#512BD4" />
+
+        <Label Text="{Binding ErrorMessage}" TextColor="Red" IsVisible="{Binding HasError}" />
+    </VerticalStackLayout>
+
+</ContentPage>

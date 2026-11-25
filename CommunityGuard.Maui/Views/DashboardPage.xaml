@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CommunityGuard.Maui.ViewModels"
+             x:Class="CommunityGuard.Maui.Views.DashboardPage"
+             x:DataType="vm:DashboardViewModel"
+             Title="Dashboard">
+    
+    
+    
+    <Grid RowDefinitions="Auto,*" Padding="30" RowSpacing="30">
+
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="5">
+            <Label Text="Operational Dashboard" FontSize="32" FontAttributes="Bold" />
+            <Label Text="{Binding UserEmail, StringFormat='Authenticated as: {0}'}" FontSize="16" TextColor="Gray" />
+        </VerticalStackLayout>
+
+        <!-- Stats Grid (Side by side on Desktop) -->
+        <Grid Grid.Row="1" ColumnDefinitions="*,*" ColumnSpacing="20" VerticalOptions="Start">
+
+            <!-- Card 1 -->
+            <Border Grid.Column="0" BackgroundColor="{AppThemeBinding Light=White, Dark=#2B2B2B}" 
+                StrokeShape="RoundRectangle 12" Padding="20" StrokeThickness="0">
+                <Grid RowDefinitions="Auto,Auto">
+                    <Label Text="TOTAL OPEN INCIDENTS" FontSize="12" TextColor="Gray" FontAttributes="Bold" />
+                    <Label Grid.Row="1" Text="{Binding Stats.TotalOpenIncidents}" FontSize="48" FontAttributes="Bold" TextColor="#512BD4" />
+                </Grid>
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.1" Offset="0,5" Radius="10" />
+                </Border.Shadow>
+            </Border>
+
+            <!-- Card 2 -->
+            <Border Grid.Column="1" BackgroundColor="{AppThemeBinding Light=White, Dark=#2B2B2B}" 
+                StrokeShape="RoundRectangle 12" Padding="20" StrokeThickness="0">
+                <Grid RowDefinitions="Auto,Auto">
+                    <Label Text="AVG RESPONSE TIME (MINS)" FontSize="12" TextColor="Gray" FontAttributes="Bold" />
+                    <Label Grid.Row="1" Text="{Binding Stats.AverageResponseTimeMinutes}" FontSize="48" FontAttributes="Bold" TextColor="#00C853" />
+                </Grid>
+                <Border.Shadow>
+                    <Shadow Brush="Black" Opacity="0.1" Offset="0,5" Radius="10" />
+                </Border.Shadow>
+            </Border>
+        </Grid>
+    </Grid>
+</ContentPage>

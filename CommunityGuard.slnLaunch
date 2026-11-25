@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "CommunityGuard.Api\\CommunityGuard.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "CommunityGuard.Maui\\CommunityGuard.Maui.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

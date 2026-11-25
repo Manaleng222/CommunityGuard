@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CommunityGuard.Maui.ViewModels"
+             xmlns:models="clr-namespace:CommunityGuard.Shared.Dtos;assembly=CommunityGuard.Shared"
+             x:Class="CommunityGuard.Maui.Views.ResourcesPage"
+             x:DataType="vm:ResourcesViewModel"
+             Title="Dispatch Resources">
+
+    <Grid RowDefinitions="*,Auto" Padding="20">
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Spacing="20">
+
+                <!-- 1. Select Incident -->
+                <Border BackgroundColor="{AppThemeBinding Light=White, Dark=#2B2B2B}" StrokeShape="RoundRectangle 10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="1. Select Target Incident" FontSize="18" FontAttributes="Bold" />
+                        <Picker Title="Choose an open incident..." 
+                                ItemsSource="{Binding OpenIncidents}" 
+                                ItemDisplayBinding="{Binding Title}" 
+                                SelectedItem="{Binding SelectedIncident}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- 2. Select Resource & Time -->
+                <Border BackgroundColor="{AppThemeBinding Light=White, Dark=#2B2B2B}" StrokeShape="RoundRectangle 10" Padding="15">
+                    <VerticalStackLayout Spacing="10">
+                        <Label Text="2. Assign Resource &amp; Time" FontSize="18" FontAttributes="Bold" />
+
+                        <Picker Title="Select a resource..." 
+                                ItemsSource="{Binding Resources}" 
+                                ItemDisplayBinding="{Binding Name}" 
+                                SelectedItem="{Binding SelectedResource}" />
+
+                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10" Margin="0,10,0,0">
+                            <DatePicker Grid.Column="0" Date="{Binding SelectedDate}" />
+                            <TimePicker Grid.Column="1" Time="{Binding StartTime}" Format="HH:mm" />
+                            <TimePicker Grid.Column="2" Time="{Binding EndTime}" Format="HH:mm" />
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- Action Button -->
+        <Button Grid.Row="1" Text="Dispatch Resource" 
+                Command="{Binding AllocateCommand}" 
+                BackgroundColor="#512BD4" TextColor="White" 
+                Margin="0,20,0,0" HeightRequest="50"
+                IsEnabled="{Binding IsNotBusy}" />
+
+        <ActivityIndicator Grid.Row="0" Grid.RowSpan="2" IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="#512BD4" />
+    </Grid>
+</ContentPage>

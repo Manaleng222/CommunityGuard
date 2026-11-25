@@ -1,0 +1,41 @@
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:CommunityGuard.Maui.Views"
+       x:Class="CommunityGuard.Maui.AppShell"
+       FlyoutBehavior="Flyout" 
+       FlyoutBackgroundColor="{AppThemeBinding Light=#F5F5F5, Dark=#1E1E1E}">
+
+    <!-- Flyout Header -->
+    <Shell.FlyoutHeader>
+        <Grid HeightRequest="100" BackgroundColor="#512BD4">
+            <Label Text="CommunityGuard" TextColor="White" FontSize="20" FontAttributes="Bold" 
+                   VerticalOptions="Center" HorizontalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Login Page (Hidden from Flyout Menu) -->
+    <FlyoutItem Title="Login" Route="LoginPage" FlyoutItemIsVisible="False">
+        <ShellContent ContentTemplate="{DataTemplate views:LoginPage}" Shell.NavBarIsVisible="False" />
+    </FlyoutItem>
+
+    <!-- Main App Pages (Visible in Flyout) -->
+    <FlyoutItem Title="Dashboard" Route="DashboardPage">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Incidents" Route="IncidentsPage">
+        <ShellContent ContentTemplate="{DataTemplate views:IncidentsPage}" />
+    </FlyoutItem>
+
+    <!-- RBAC Secured Items -->
+    <FlyoutItem x:Name="DispatchMenuItem" Title="Report Incident" Route="DispatchPage">
+        <ShellContent ContentTemplate="{DataTemplate views:DispatchPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem x:Name="ResourcesMenuItem" Title="Dispatch Resources" Route="ResourcesPage">
+        <ShellContent ContentTemplate="{DataTemplate views:ResourcesPage}" />
+    </FlyoutItem>
+
+    <MenuItem Text="Logout" Clicked="OnLogoutClicked" />
+
+</Shell>
