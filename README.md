@@ -1,5 +1,5 @@
 ## 🛠️ Step 1: Create the File
- Open your Developer PowerShell (make sure you are in the root folder: C:\Users\USER\source\repos\CommunityGuard).
+ Open your Developer PowerShell (make sure you are in the root folder: .
 
 ## Run this command to create the file:
 
